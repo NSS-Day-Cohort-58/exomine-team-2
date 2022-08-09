@@ -23,7 +23,9 @@ export const Governors = () => {
     <option value="0">Select Governor...</option>`
 
     const listItems = governors.map(governor => {
-        html += `<option value ="${governor.id}">${governor.name}</option>`
+        if (governor.status === true) {
+            html += `<option value ="${governor.id}">${governor.name}</option>`
+        }
     })
     html += listItems.join("")
     html += "</select>"
