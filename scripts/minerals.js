@@ -13,18 +13,3 @@ document.addEventListener(
         }
     }
 )
-
-
-
-
-
-export const Minerals = () => {
-    let html = `<select id="mineral">
-    <option value="0">Select Mineral...</option>`
-
-    const listItems = minerals.map(mineral => {
-        html += 
-    })
-    html += listItems.join("")
-    html += "</select>"
-}
