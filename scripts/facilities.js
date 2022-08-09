@@ -10,7 +10,7 @@ const facilities = getFacilities()
 // Join the array of option elements and add it to the html
 // Return the html
 export const Facilities = () => {
-    let html = `<select id="facility">
+    let html = `<label for="facility">Choose a Facility</label><select id="facility">
     <option value="0">Select Facility...</option>`
 
     const optionTags = facilities.map(facility => {

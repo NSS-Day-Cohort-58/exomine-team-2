@@ -19,7 +19,7 @@ const governors = getGovernors()
 
 
 export const Governors = () => {
-    let html = `<select id="governor">
+    let html = `<label for="governor">Choose a Governor</label><select id="governor">
     <option value="0">Select Governor...</option>`
 
     const listItems = governors.map(governor => {
@@ -29,4 +29,5 @@ export const Governors = () => {
     })
     html += listItems.join("")
     html += "</select>"
+    return html
 }
