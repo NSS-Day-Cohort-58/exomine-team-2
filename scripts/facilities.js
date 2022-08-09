@@ -3,15 +3,20 @@ import { getFacilities } from "./database.js"
 
 const facilities = getFacilities()
 
-
-
+// Define and export a function to create the drop-down list html
+// Declare a variable to store the html whose value is a select element with id of "facility"
+// Add an option element with value equal to 0 for Select Facility
+// Use the .map() method t, add an option element of the facility name with a value equal to facility id for each facility object within the facilities array
+// Join the array of option elements and add it to the html
+// Return the html
 export const Facilities = () => {
     let html = `<select id="facility">
     <option value="0">Select Facility...</option>`
 
-    const listItems = facilities.map(facility => {
-        html += 
+    const optionTags = facilities.map(facility => {
+        html += `<option value="${facility.id}">${facility.name}</option>`
     })
-    html += listItems.join("")
+    html += optionTags.join("")
     html += "</select>"
+    return html
 }
