@@ -36,14 +36,28 @@ const database = {
     cartBuilder: {}
 }
 
+export const getFacilities = () => {
+    return database.facilities.map(facility => ({...facility}))
+}
+export const getColonies = () => {
+    return database.colonies.map(colony => ({...colony}))
+}
+export const getGovernors = () => {
+    return database.governors.map(governor => ({...governor}))
+}
+export const getMinerals = () => {
+    return database.minerals.map(mineral => ({...mineral}))
+}
+export const getFacilityMinerals = () => {
+    return database.facilityMinerals.map(facilityMineral => ({...facilityMineral}))
+}
+
 export const setFacility = (facilityId) => {
-    database.transientState.selectedFacility = facilityId
+    database.cartBuilder.selectedFacility = facilityId
     document.dispatchEvent( new CustomEvent("stateChanged") )
 }
 
-export const getFacilities = () => {
-    return database.facilities.map(f => ({...f}))
-}
+
 
 export const purchaseMineral = () => {
 
