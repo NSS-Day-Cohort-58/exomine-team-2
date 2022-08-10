@@ -1,4 +1,4 @@
-import { getFacilities, getFacilityMinerals, getMinerals } from "./database.js"
+import { getFacilities, getFacilityMinerals, getMinerals, setFacilityMineral, setMineral } from "./database.js"
 
 const facilityMinerals = getFacilityMinerals()
 const minerals = getMinerals()
@@ -24,6 +24,8 @@ document.addEventListener(
             const foundFacility = facilities.find(facility => facility.id === foundFacilityMineral.facilityId)
 
             document.getElementById("cart--selection").innerHTML = `1 ton of ${foundMineral.name} from ${foundFacility.name}`
+            setMineral(foundMineral.id)
+            setFacilityMineral(foundFacilityMineral.id)
         }
     }
 )

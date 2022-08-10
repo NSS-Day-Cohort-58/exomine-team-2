@@ -39,6 +39,9 @@ const database = {
     cartBuilder: {}
 }
 
+
+
+
 export const getFacilities = () => {
     return database.facilities.map(facility => ({...facility}))
 }
@@ -58,16 +61,66 @@ export const getColonyMinerals = () => {
     return database.colonyMinerals.map(colonyMineral => ({...colonyMineral}))
 }
 
+
+
+
+
+
 export const setFacility = (facilityId) => {
     database.cartBuilder.selectedFacility = facilityId
-    document.dispatchEvent( new CustomEvent("stateChanged") )
+    //document.dispatchEvent( new CustomEvent("stateChanged") )
+}
+export const setColony = (colonyId) => {
+    database.cartBuilder.selectedcolony = colonyId
+}
+export const setGovernor = (governorId) => {
+    database.cartBuilder.selectedgovernor = governorId
+}
+export const setMineral = (mineralId) => {
+    database.cartBuilder.selectedmineral = mineralId
+}
+export const setFacilityMineral = (facilityMineralId) => {
+    database.cartBuilder.selectedfacilityMineral = facilityMineralId
+}
+export const setColonyMineral = (colonyInventory) => {
+    database.cartBuilder.colonyInventory = colonyInventory
 }
 
 
 
+
+// Broadcast custom event to entire documement so that the
+// application can re-render and update state
+
+
 export const purchaseMineral = () => {
 
-        // Broadcast custom event to entire documement so that the
-        // application can re-render and update state
-        document.dispatchEvent( new CustomEvent("stateChanged") )
+
+    const newColonyMineral = {...database.cartBuilder}
+
+    if (database.colonyMinerals.length === 0) {
+        newColonyMineral.id = 0
+    } else {
+        const lastIndex = database.colonyMinerals.length - 1
+        newColonyMineral.id = database.colonyMinerals[lastIndex].id + 1
+        }
+    const colonyMinerals = getColonyMinerals()
+    let updatedInventory 
+    const foundColonyMineral = colonyMinerals.find(colonyMineral => colonyMineral.colonyId === database.cartBuilder.selectedcolony && colonyMineral.mineralId === database.cartBuilder.selectedmineral)
+    if (foundColonyMineral === undefined) {
+       updatedInventory = 1 
+    }
+    else {
+        updatedInventory = foundColonyMineral.colonyInventory + 1
+    }
+    setColonyMineral(updatedInventory)
+    
+
+
+    database.colonyMinerals.push(newColonyMineral)
+
+    database.cartBuilder = {}
+
+
+    document.dispatchEvent( new CustomEvent("stateChanged") )
 }
