@@ -1,5 +1,6 @@
 import { getFacilities } from "./database.js"
 import { Governors } from "./governors.js"
+import { FacilityMineralsList } from "./minerals";
 
 const facilities = getFacilities()
 
