@@ -1,4 +1,4 @@
-import { getFacilities } from "./database.js"
+import { getFacilities, setFacility } from "./database.js"
 import { Governors } from "./governors.js"
 import { FacilityMineralsList } from "./minerals.js";
 
@@ -50,7 +50,7 @@ document.addEventListener(
                     return facility
                 }
             })
-            
+            setFacility(foundFacility.id)
             document.getElementById("facility--header").innerHTML = `Facility Minerals for ${foundFacility.name}`
             document.getElementById("facility--minerals").innerHTML = FacilityMineralsList(foundFacility)
             if(foundFacility.status === false ){

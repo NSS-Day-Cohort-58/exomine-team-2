@@ -1,4 +1,4 @@
-import { getColonies, getGovernors } from "./database.js"
+import { getColonies, getGovernors, setColony, setGovernor } from "./database.js"
 import { ColonyList } from "./minerals.js"
 
 
@@ -26,6 +26,8 @@ document.addEventListener(
             const foundColony = colonies.find(colony => colony.id === foundGovernor.colonyId)
             document.getElementById("colony--header").innerHTML = `${foundColony.name} Minerals`
             document.getElementById("colony--minerals").innerHTML = ColonyList(foundColony)
+            setColony(foundColony.id)
+            setGovernor(foundGovernor.id)
         }
     }
 )
