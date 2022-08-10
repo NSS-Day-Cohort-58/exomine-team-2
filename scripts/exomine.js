@@ -5,7 +5,7 @@ import { CartSelection } from "./shoppingCart.js"
 
 export const Exomine = () => {
     return `<h1>Solar System Mining Marketplace</h1>
-    
+    <section id="fullSystem">
     <article id="options">
         ${Governors()}
         ${Facilities()}
@@ -21,5 +21,6 @@ export const Exomine = () => {
         ${CartSelection()}
         <button id="purchaseButton">Purchase Mineral</button>
     </article>
+    </section>
     `
 }
