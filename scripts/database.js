@@ -32,7 +32,10 @@ const database = {
         {id:5 , facilityId: 2, mineralId: 5, facilityInventory: 37},
         {id:6 , facilityId: 3, mineralId: 1, facilityInventory: 420},
     ],
-    colonyMinerals: [],
+    colonyMinerals: [
+        {id: 1, governorId: 3, colonyId: 2, mineralId: 3, colonyInventory: 7},
+        {id: 1, governorId: 3, colonyId: 2, mineralId: 5, colonyInventory: 2}
+    ],
     cartBuilder: {}
 }
 
@@ -50,6 +53,9 @@ export const getMinerals = () => {
 }
 export const getFacilityMinerals = () => {
     return database.facilityMinerals.map(facilityMineral => ({...facilityMineral}))
+}
+export const getColonyMinerals = () => {
+    return database.colonyMinerals.map(colonyMineral => ({...colonyMineral}))
 }
 
 export const setFacility = (facilityId) => {
