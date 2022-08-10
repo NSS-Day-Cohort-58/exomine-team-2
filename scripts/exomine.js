@@ -10,13 +10,13 @@ export const Exomine = () => {
         ${Governors()}
         ${Facilities()}
     </article>
-    <article id="colonyMinerals">
+    <article id="colony">
         
     </article>
-    <article id="facilityMinerals">
+    <article id="facility">
         
     </article>
-    <article id="cartBuilder">
+    <article id="cart">
         <h2>Space Cart</h2>
         
         <button id="purchaseButton">Purchase Mineral</button>

@@ -19,12 +19,13 @@ const governors = getGovernors()
 
 
 export const Governors = () => {
-    let html = `<label for="governor">Choose a Governor</label><select id="governor">
-    <option value="0">Select Governor...</option>`
+    let html = `<label for="options--governor">Choose a Governor</label>
+    <select id="options--governor">
+    <option id="option--0" value="0">Select Governor...</option>`
 
     const listItems = governors.map(governor => {
         if (governor.status === true) {
-            html += `<option value ="${governor.id}">${governor.name}</option>`
+            html += `<option id="option--${governor.id}" value ="${governor.id}">${governor.name}</option>`
         }
     })
     html += listItems.join("")
