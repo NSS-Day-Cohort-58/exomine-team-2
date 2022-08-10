@@ -1,6 +1,6 @@
 import { getFacilities } from "./database.js"
 import { Governors } from "./governors.js"
-import { FacilityMineralsList } from "./minerals";
+import { FacilityMineralsList } from "./minerals.js";
 
 const facilities = getFacilities()
 
@@ -12,7 +12,7 @@ const facilities = getFacilities()
 // Return the html
 export const Facilities = () => {
     let html = `<label for="options--facility">Choose a Facility</label>
-    <select id="options--facility">
+    <select id="options--facility" disabled=true>
     <option id="option--0" value="0">Select Facility...</option>`
 
     const optionTags = facilities.map(facility => {
@@ -20,13 +20,17 @@ export const Facilities = () => {
     })
     html += optionTags.join("")
     html += "</select>"
-    // if (document.getElementById("governor").parseInt(value) === 0) {
-    //     document.getElementById("facility").disabled = true
-    // }
     return html
 }
 
-
+document.addEventListener(
+    "change",
+    (event) => {
+        if (event.target.id === "options--governor") {
+            document.getElementById("options--facility").disabled = false
+        }
+    }
+)
 
 export const FacilityMinerals = () => {
     return `
