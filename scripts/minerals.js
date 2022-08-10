@@ -1,7 +1,9 @@
-import { getMinerals } from "./database.js"
-
+import { getMinerals, getFacilities, getFacilityMinerals, getColonyMinerals } from "./database.js"
 
 const minerals = getMinerals()
+const facilityMinerals = getFacilityMinerals()
+const colonyMinerals = getColonyMinerals()
+
 
 
 // document.addEventListener(
@@ -13,63 +15,6 @@ const minerals = getMinerals()
 //     }
 // )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-import { getColonyMinerals } from "./database.js"
-const colonyMinerals = getColonyMinerals()
 
 // Define a function that takes a colony as an argument and generates a list item element for each mineral available at that colony
 // Declare a variable to store the result of iterating the colonyMinerals property via the .map() method
@@ -93,3 +38,28 @@ export const ColonyList = (colony) => {
         return listItems.join("")
     }
 }
+
+
+
+
+
+export const FacilityMineralsList = (facility) => {
+    
+    
+    
+
+    // Use .map() for converting objects to <li> elements
+    const listItemsArray = facilityMinerals.map(faciMineral => {
+        if(faciMineral.facilityId === facility.id){
+        const foundMineral = minerals.find(mineral => mineral.id === faciMineral.mineralId)
+              return `<input type="radio" name="facility--mineral" value="${faciMineral.id}" /> ${faciMineral.facilityInventory} tons of ${foundMineral.name}`
+         
+            }     
+        })
+
+
+        // Join all of the strings in the array into a single string
+   return listItemsArray.join("")
+    }
+
+   

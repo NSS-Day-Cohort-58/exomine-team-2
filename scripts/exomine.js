@@ -1,5 +1,5 @@
 import { Governors } from "./governors.js"
-import { Facilities } from "./facilities.js"
+import { Facilities, FacilityMinerals } from "./facilities.js"
 import { ColonyMinerals } from "./colonies.js"
 
 export const Exomine = () => {
@@ -13,7 +13,7 @@ export const Exomine = () => {
         ${ColonyMinerals()}
     </article>
     <article id="facility">
-        
+        ${FacilityMinerals()}
     </article>
     <article id="cart">
         <h2>Space Cart</h2>

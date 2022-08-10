@@ -1,5 +1,6 @@
 import { getFacilities } from "./database.js"
 import { Governors } from "./governors.js"
+import { FacilityMineralsList } from "./minerals";
 
 const facilities = getFacilities()
 
@@ -23,4 +24,14 @@ export const Facilities = () => {
     //     document.getElementById("facility").disabled = true
     // }
     return html
+}
+
+
+
+export const FacilityMinerals = () => {
+    return `
+    <h2 id="facility--header">Facility Minerals</h2>
+    <ul id="facility--minerals">
+    </ul>
+    `
 }
