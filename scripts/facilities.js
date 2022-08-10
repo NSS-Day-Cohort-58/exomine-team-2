@@ -55,6 +55,8 @@ document.addEventListener(
             document.getElementById("facility--minerals").innerHTML = FacilityMineralsList(foundFacility)
             if(foundFacility.status === false ){
                 document.getElementById("purchaseButton").disabled = true
+            } else {
+                document.getElementById("purchaseButton").disabled = false
             }
         }
     }

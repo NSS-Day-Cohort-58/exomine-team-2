@@ -13,7 +13,7 @@ const database = {
     ],
     facilities: [
         {id:1 , name: "Ganymede", status: true },
-        {id:2 , name: "Lo", status: true},
+        {id:2 , name: "Lo", status: false},
         {id:3 , name: "Titan", status: true},
     ],
     minerals: [
