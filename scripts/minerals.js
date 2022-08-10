@@ -62,4 +62,6 @@ export const FacilityMineralsList = (facility) => {
    return listItemsArray.join("")
     }
 
+
+
    
