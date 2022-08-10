@@ -24,3 +24,13 @@ export const Facilities = () => {
     // }
     return html
 }
+
+
+
+export const FacilityMinerals = () => {
+    return `
+    <h2 id="facility--header">Facility Minerals</h2>
+    <ul id="facility--minerals">
+    </ul>
+    `
+}
