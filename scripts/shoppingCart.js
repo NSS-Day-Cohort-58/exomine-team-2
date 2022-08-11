@@ -1,4 +1,4 @@
-import { getFacilities, getFacilityMinerals, getMinerals, setFacilityMineral, setMineral } from "./database.js"
+import { getFacilities, getFacilityMinerals, getMinerals, purchaseMineral, setFacilityMineral, setMineral } from "./database.js"
 
 const facilityMinerals = getFacilityMinerals()
 const minerals = getMinerals()
@@ -29,3 +29,14 @@ document.addEventListener(
         }
     }
 )
+
+document.addEventListener(
+    "click",
+    (event) => {
+        if (event.target.id === "purchaseButton") {
+            purchaseMineral()
+        }
+    }
+)
+
+

@@ -26,6 +26,7 @@ document.addEventListener(
             const foundColony = colonies.find(colony => colony.id === foundGovernor.colonyId)
             document.getElementById("colony--header").innerHTML = `${foundColony.name} Minerals`
             document.getElementById("colony--minerals").innerHTML = ColonyList(foundColony)
+            document.getElementById("options--governor").setAttribute("currentcolony", foundColony.id)
             setColony(foundColony.id)
             setGovernor(foundGovernor.id)
         }

@@ -53,6 +53,7 @@ document.addEventListener(
             setFacility(foundFacility.id)
             document.getElementById("facility--header").innerHTML = `Facility Minerals for ${foundFacility.name}`
             document.getElementById("facility--minerals").innerHTML = FacilityMineralsList(foundFacility)
+            document.getElementById("options--facility").setAttribute("currentfacility", foundFacility.id)
             if(foundFacility.status === false ){
                 document.getElementById("purchaseButton").disabled = true
             } else {

@@ -1,8 +1,8 @@
 import { getMinerals, getFacilities, getFacilityMinerals, getColonyMinerals } from "./database.js"
 
 const minerals = getMinerals()
-const facilityMinerals = getFacilityMinerals()
-const colonyMinerals = getColonyMinerals()
+
+
 
 
 
@@ -24,11 +24,14 @@ const colonyMinerals = getColonyMinerals()
 // If the result of the .map() method is undefined, return an empty string
 // Else return the result of the .map() method joined by an empty string
 export const ColonyList = (colony) => {
+    const colonyMinerals = getColonyMinerals()
     const listItems = colonyMinerals.map(
         (colonyMineral) => {
             if (colonyMineral.colonyId === colony.id) {
                 const foundMineral = minerals.find(mineral => mineral.id === colonyMineral.mineralId)
                 return `<li>${colonyMineral.colonyInventory} tons of ${foundMineral.name}</li>`
+            } else {
+                return ""
             }
         }
     )
@@ -46,7 +49,7 @@ export const ColonyList = (colony) => {
 export const FacilityMineralsList = (facility) => {
     
     
-    
+    const facilityMinerals = getFacilityMinerals()
 
     // Use .map() for converting objects to <li> elements
     const listItemsArray = facilityMinerals.map(faciMineral => {
@@ -54,7 +57,9 @@ export const FacilityMineralsList = (facility) => {
         const foundMineral = minerals.find(mineral => mineral.id === faciMineral.mineralId)
               return `<input type="radio" name="facility--mineral" value="${faciMineral.id}" /> ${faciMineral.facilityInventory} tons of ${foundMineral.name}`
          
-            }     
+            } else {
+                return ""
+            }   
         })
 
 
