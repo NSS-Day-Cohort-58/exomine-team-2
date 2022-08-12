@@ -25,9 +25,13 @@ export const FacilityMinerals = () => {
             const shouldIBeChecked = facilityMineral.id === cartBuilder.facilityMineralId
 
             const foundFacility = facilities.find(facility => facility.id === facilityMineral.facilityId)
-            const shouldIBeActive = foundFacility.status
+            let shouldIBeActive = foundFacility.status
 
-            return `<input type="radio" name="facility--mineral" value="${facilityMineral.id}--${facilityMineral.mineralId}" ${shouldIBeChecked ? "checked" : ""} ${shouldIBeActive ? "" : "disabled"}/> ${facilityMineral.facilityInventory} tons of ${foundMineral.name}`
+            if (facilityMineral.facilityInventory === 0) {
+                shouldIBeActive = false
+            }
+
+            return `<li><input type="radio" name="facility--mineral" value="${facilityMineral.id}--${facilityMineral.mineralId}" ${shouldIBeChecked ? "checked" : ""} ${shouldIBeActive ? "" : "disabled"}/> ${facilityMineral.facilityInventory} tons of ${foundMineral.name}</li>`
         } else {
             return ""
         }

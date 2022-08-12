@@ -1,65 +1,127 @@
+@font-face {
+    font-family: face;
+    src: url("https://fontstruct.com/fontstructions/show/1755458/edge-of-the-galaxy");
+}
+
+body {
+    background-image: url("https://www.nasa.gov/sites/default/files/styles/full_width/public/thumbnails/image/main_image_star-forming_region_carina_nircam_final-1280.jpg");
+    background-position: static;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.798);
+    font-family: 'Silkscreen', cursive;
+}
+
+h2 {
+    font-family: 'Silkscreen', cursive;
+}
+
 #options{
-    display: flex;
-    flex-direction: column;
-    min-width: 50%;
+    /* display: flex; */
+    /* min-width: 50%;
     max-width: 50%;
     max-height: 40%;
-    min-height: 40%;
+    min-height: 40%; */
     justify-content: space-around;
-  
-
+    margin-top: 1em;
+    margin-left: 1em;
+    flex-wrap: nowrap;
+    border: 2px solid white;
+    box-shadow: 5px 10px 15px 3px;
+    border-radius: 0.5em;
+    padding: 1em;
+    margin: 2em;
+    order: 0;
+    background: rgba(255, 255, 255, 0.625);
+    text-decoration:solid;
+    align-content: center;
 }
 
 #cart{
     display: flex;
     flex-direction: column;
-    min-width: 30%;
-    max-width: 30%;
+    /* min-width: 50%;
+    max-width: 50%;
     max-height: 40%;
-    min-height: 40%;
-
+    min-height: 40%; */
+    text-align: center;
+    align-items: center;
+    border: 2px solid white;
+    box-shadow: 5px 10px 15px 3px;
+    border-radius: 0.5em;
+    padding: 1em;
+    margin: 2em;
+    order: 2;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.625);
+    font-family: 'Exo 2', sans-serif;
 }
 
 #colony{
     display: flex;
     flex-direction: column;
-    min-width: 50%;
-    max-width: 50%;
+    /* min-width: 45%;
+    max-width: 45%;
     max-height: 40%;
-    min-height: 40%;
-  
+    min-height: 40%; */
+    border: 2px solid white;
+    box-shadow: 5px 10px 15px 3px;
+    border-radius: 0.5em; 
+    padding: 1em;
+    margin: 2em;
+    order: 3;
+    list-style: none;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.625);
+    font-family: 'Exo 2', sans-serif;
+
 
 }
 
 #facility{
     display: flex;
     flex-direction: column;
-    min-width: 50%;
+    /* min-width: 50%;
     max-width: 50%;
     max-height: 70%;
-    min-height: 70%;
-
+    min-height: 70%; */
+    border: 2px solid white;
+    box-shadow: 5px 10px 15px 3px;
+    border-radius: 0.5em;
+    padding: 1em;
+    margin: 2em;
+    order: 1;
+    background: rgba(255, 255, 255, 0.625);
 }
 
 #fullSystem{
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    border: 2px solid red;
     justify-content: space-between;
     min-height: 95%;
     max-width: 95%;
+    margin: 2em;
 
 }
 
 #facility--minerals{
     display: flex;
     flex-direction: column;
-
-
+    margin-bottom: 3em;
+    list-style: none;
+    align-items: center;
+    font-family: 'Exo 2', sans-serif;
 }
+
 #facility--header{
     display: flex;
     justify-content: center;
+
 }
 #colony--header{
     display: flex;
@@ -67,23 +129,28 @@
     
 }
 
+label {
+    font-family: 'Exo 2', sans-serif;
+}
+
 #options--governor{
-    max-width: fit-content;
-    margin-left: 15%;
+    /* min-width: 90%;
+    max-width: 90%; */
+    margin-left: 10%;
     
 }
 #options--facility{
-    max-width: fit-content;
-    margin-left: 15%;
-    
+    /* min-width: 90%;
+    max-width: 90%;   */
+    margin-left: 10%;
 }
-#colony--minerals{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-left: 25%;
-    
+
+#purchaseButton {
+    padding: 1em;
+    max-width: 50%;
+    font-family: 'Exo 2', sans-serif;
 }
+
 /* *{
     border: 1px solid black
 } */

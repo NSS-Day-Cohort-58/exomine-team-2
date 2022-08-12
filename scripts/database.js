@@ -4,17 +4,26 @@ const database = {
         { id: 2, name: "Earth" },
         { id: 3, name: "Mars" },
         { id: 4, name: "Pluto" },
+        { id: 5, name: "Pandora" },
+        { id: 6, name: "Wakanda" },
+        { id: 7, name: "Krypton" }
     ],
     governors: [
         { id: 1, name: "Patricia Purdy", colonyId: 4, status: true },
         { id: 2, name: "Katrina Bahringer", colonyId: 1, status: true },
         { id: 3, name: "Lola Wolff", colonyId: 2, status: true },
-        { id: 4, name: "Damaon Hartmonn", colonyId: 3, status: true },
+        { id: 4, name: "Elon Musk", colonyId: 3, status: true },
+        { id: 5, name: "Brandon Herbison", colonyId: 6, status: true },
+        { id: 6, name: "Adam Chance", colonyId: 7, status: true },
+        { id: 7, name: "Carly Dopps", colonyId: 5, status: true }
     ],
     facilities: [
         { id: 1, name: "Ganymede", status: true },
-        { id: 2, name: "Lo", status: true },
+        { id: 2, name: "Lo", status: false },
         { id: 3, name: "Titan", status: true },
+        { id: 4, name: "Space Amazon", status: true },
+        { id: 5, name: "Virgin Group", status: true },
+        { id: 6, name: "Tesla Motors", status: true }
     ],
     minerals: [
         { id: 1, name: "Gold" },
@@ -22,6 +31,8 @@ const database = {
         { id: 3, name: "Iron" },
         { id: 4, name: "Nickel" },
         { id: 5, name: "Chromium" },
+        { id: 6, name: "Vibranium" },
+        { id: 7, name: "Kryptonite" }
     ],
 
     facilityMinerals: [
@@ -30,7 +41,13 @@ const database = {
         { id: 3, facilityId: 2, mineralId: 2, facilityInventory: 56 },
         { id: 4, facilityId: 2, mineralId: 4, facilityInventory: 160 },
         { id: 5, facilityId: 2, mineralId: 5, facilityInventory: 37 },
-        { id: 6, facilityId: 3, mineralId: 1, facilityInventory: 420 }
+        { id: 6, facilityId: 3, mineralId: 1, facilityInventory: 420 },
+        { id: 7, facilityId: 4, mineralId: 7, facilityInventory: 271 },
+        { id: 8, facilityId: 5, mineralId: 2, facilityInventory: 45 },
+        { id: 9, facilityId: 5, mineralId: 4, facilityInventory: 25 },
+        { id: 10, facilityId: 5, mineralId: 7, facilityInventory: 777 },
+        { id: 11, facilityId: 6, mineralId: 6, facilityInventory: 26 },
+        { id: 12, facilityId: 6, mineralId: 3, facilityInventory: 1 }
         ,
     ],
     colonyMinerals: [
