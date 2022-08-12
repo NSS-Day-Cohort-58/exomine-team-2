@@ -89,7 +89,6 @@ export const setFacilityMineral = (id) => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
-// Haven't used this one yet
 export const setColonyInventory = (inventory) => {
     database.cartBuilder.colonyInventory = inventory
     document.dispatchEvent(new CustomEvent("stateChanged"))
@@ -101,43 +100,32 @@ export const setColonyInventory = (inventory) => {
 // CLEAN UP THIS FUNCTION, but this is last step
 
 export const purchaseMineral = () => {
+
     const cartBuilder = getCartBuilder()
 
-    const newColonyMineral = { ...database.cartBuilder }
-
     if (database.colonyMinerals.length === 0) {
-        newColonyMineral.id = 1
+        database.cartBuilder.id = 1
     } else {
         const lastIndex = database.colonyMinerals.length - 1
-        newColonyMineral.id = database.colonyMinerals[lastIndex].id + 1
+        database.cartBuilder.id = database.colonyMinerals[lastIndex].id + 1
     }
 
     const facilityMinerals = getFacilityMinerals()
     const foundFacilityMineral = facilityMinerals.find(facilityMineral => facilityMineral.id === cartBuilder.facilityMineralId)
     const subtractInventory = foundFacilityMineral.facilityInventory - 1
     database.facilityMinerals[foundFacilityMineral.id - 1].facilityInventory = subtractInventory
-    delete newColonyMineral.facilityMineralId
+    delete database.cartBuilder.facilityMineralId
 
-
-    // If it doesn't update, try referencing the database object directly instead of found variable
     const colonyMinerals = getColonyMinerals()
     const foundColonyMineral = colonyMinerals.find(colonyMineral => colonyMineral.mineralId === cartBuilder.mineralId && colonyMineral.colonyId === cartBuilder.colonyId)
     if (foundColonyMineral) {
         const addInventory = foundColonyMineral.colonyInventory + 1
         database.colonyMinerals[foundColonyMineral.id - 1].colonyInventory = addInventory
     } else {
-        const newPurchase = {
-            id: newColonyMineral.id,
-            colonyId: newColonyMineral.colonyId,
-            mineralId: newColonyMineral.mineralId,
-            colonyInventory: 1
-        }
+        setColonyInventory(1)
+        const newPurchase = {...database.cartBuilder}
         database.colonyMinerals.push(newPurchase)
     }
-
-
-    // database.cartBuilder.mineralId = ""
-    // // database.cartBuilder.facilityMineralId = ""
 
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
