@@ -1,7 +1,8 @@
 import { Governors } from "./governors.js"
-import { Facilities, FacilityMinerals } from "./facilities.js"
-import { ColonyMinerals } from "./colonies.js"
+import { Facilities } from "./facilities.js"
+import { ColonyMinerals } from "./colonyMinerals.js"
 import { CartSelection } from "./shoppingCart.js"
+import { FacilityMinerals } from "./facilityMinerals.js"
 
 export const Exomine = () => {
     return `<h1>Solar System Mining Marketplace</h1>
