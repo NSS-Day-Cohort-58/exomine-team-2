@@ -2,7 +2,10 @@ import { getGovernors, getCartBuilder, setGovernor, setColony } from "./database
 
 const governors = getGovernors()
 
-
+// Define and export a function that generates the html for a drop-down list of governors
+// Add a label element for the description
+// If the governor is active
+// Add an option element for each governor with id equal to governor id and value equal to governor id and colony id
 export const Governors = () => {
     const cartBuilder = getCartBuilder()
 
@@ -22,7 +25,7 @@ export const Governors = () => {
 }
 
 
-
+// Create an event listener of type "change" that sets the state for colony and governor when a governor is selected
 document.addEventListener(
     "change",
     (event) => {

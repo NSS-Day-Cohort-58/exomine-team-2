@@ -4,14 +4,11 @@ const facilities = getFacilities()
 
 
 // Define and export a function to create the drop-down list html
-// Declare a variable to store the html whose value is a select element with id of "facility"
-// Add an option element with value equal to 0 for Select Facility
-// Use the .map() method t, add an option element of the facility name with a value equal to facility id for each facility object within the facilities array
-// Join the array of option elements and add it to the html
-// Return the html
-
-// Line 20 - If cartBuilder has a governorId, return empty string, but if it does not have a governorId, add the disable attribute to the select element (This is a condensed if-else statement)
+// Diable facility drop down until a governor is selected
+    // If cartBuilder has a governorId, return empty string, but if it does not have a governorId, add the disable attribute to the select element (This is a condensed if-else statement)
 // It's a dynamic way to render a certain version of the html based on the transient state
+// Use the .map() method to add an option element of the facility name with a value equal to facility id for each facility object
+// Return the html
 
 export const Facilities = () => {
     const cartBuilder = getCartBuilder()
@@ -29,7 +26,7 @@ export const Facilities = () => {
     return html
 }
 
-
+// Define a function to disable the pruchase button if the current selected facility is inactive
 // We're keeping this here because all of its information is about facilities even though is affects the shopping cart button
 const ButtonDisabled = () => {
     const cartBuilder = getCartBuilder()
@@ -43,8 +40,8 @@ const ButtonDisabled = () => {
 }
 
 
-// CLEAN UP EVENT LISTENER TO BE ONLY SETTER FUNCTIONS (use governor example) + DISABLE FEATURE
-
+// Create an event listener of type "change" that sets the state for facility when a facility is selected\
+// Disable the purchase button if the selected facility is inactive
 document.addEventListener(
     "change",
     (event) => {

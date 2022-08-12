@@ -19,7 +19,7 @@ export const ColonyMinerals = () => {
 
 
     let html = `<h2 id="colony--header">${colonyHeader}</h2>
-    <ul id="colony--minerals"></ul>`
+    <ul id="colony--minerals">`
 
     const listItems = colonyMinerals.map(
         (colonyMineral) => {

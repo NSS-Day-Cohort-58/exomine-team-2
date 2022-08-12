@@ -8,8 +8,9 @@ const facilities = getFacilities()
 export const CartSelection = () => {
     const facilityMinerals = getFacilityMinerals()
     const cartBuilder = getCartBuilder()
+    const cartChoices = []
 
-    let html = `<p id="cart--selection">`
+    let html = `<ul id="cart--selection">`
     const foundFacilityMineral = facilityMinerals.find(facilityMineral => facilityMineral.id === cartBuilder.facilityMineralId)
 
     if (foundFacilityMineral) {
@@ -18,11 +19,11 @@ export const CartSelection = () => {
 
         // Might not need this double-check
         if (foundMineral.id === cartBuilder.mineralId) {
-            html += `1 ton of ${foundMineral.name} from ${foundFacility.name}`
+            cartChoices.push(`<li>1 ton of ${foundMineral.name} from ${foundFacility.name}</li>`)
         }
     }
-
-    html += `</p>`
+    html += cartChocies.join("")
+    html += `</ul>`
     return html
 }
 
