@@ -1,64 +1,57 @@
-import { getFacilities, setFacility } from "./database.js"
-import { Governors } from "./governors.js"
-import { FacilityMineralsList } from "./minerals.js";
+import { getFacilities, setFacility, getCartBuilder } from "./database.js"
 
 const facilities = getFacilities()
-export const FacilityMinerals = () => {
-    return `
-    <h2 id="facility--header">Facility Minerals</h2>
-    <ul id="facility--minerals">
-    </ul>
-    `
-}
+
+
 // Define and export a function to create the drop-down list html
 // Declare a variable to store the html whose value is a select element with id of "facility"
 // Add an option element with value equal to 0 for Select Facility
 // Use the .map() method t, add an option element of the facility name with a value equal to facility id for each facility object within the facilities array
 // Join the array of option elements and add it to the html
 // Return the html
+
+// Line 20 - If cartBuilder has a governorId, return empty string, but if it does not have a governorId, add the disable attribute to the select element (This is a condensed if-else statement)
+// It's a dynamic way to render a certain version of the html based on the transient state
+
 export const Facilities = () => {
+    const cartBuilder = getCartBuilder()
+
     let html = `<label for="options--facility">Choose a Facility</label>
-    <select id="options--facility" disabled=true>
+    <select id="options--facility" ${cartBuilder.governorId ? "" : "disabled"}>
     <option id="option--0" value="0">Select Facility...</option>`
 
     const optionTags = facilities.map(facility => {
-        html += `<option id="option--${facility.id}" value="${facility.id}">${facility.name}</option>`
+        html += `<option id="option--${facility.id}" value="${facility.id}" ${facility.id === cartBuilder.facilityId ? "selected" : ""}>${facility.name}</option>`
     })
     html += optionTags.join("")
     html += "</select>"
+
     return html
 }
 
-document.addEventListener(
-    "change",
-    (event) => {
-        if (event.target.id === "options--governor") {
-            document.getElementById("options--facility").disabled = false
+
+// We're keeping this here because all of its information is about facilities even though is affects the shopping cart button
+const ButtonDisabled = () => {
+    const cartBuilder = getCartBuilder()
+
+    if (cartBuilder.facilityId) {
+        const foundFacility = facilities.find(facility => facility.id === cartBuilder.facilityId)
+        if (foundFacility.status === false) {
+            document.getElementById("purchaseButton").disabled = true
         }
     }
-)
+}
 
 
-
+// CLEAN UP EVENT LISTENER TO BE ONLY SETTER FUNCTIONS (use governor example) + DISABLE FEATURE
 
 document.addEventListener(
     "change",
     (event) => {
         if (event.target.id === "options--facility") {
-            const foundFacility = facilities.find(facility => {
-                if(facility.id === parseInt(event.target.value)){
-                    return facility
-                }
-            })
-            setFacility(foundFacility.id)
-            document.getElementById("facility--header").innerHTML = `Facility Minerals for ${foundFacility.name}`
-            document.getElementById("facility--minerals").innerHTML = FacilityMineralsList(foundFacility)
-            document.getElementById("options--facility").setAttribute("currentfacility", foundFacility.id)
-            if(foundFacility.status === false ){
-                document.getElementById("purchaseButton").disabled = true
-            } else {
-                document.getElementById("purchaseButton").disabled = false
-            }
+            setFacility(parseInt(event.target.value))
+            ButtonDisabled()
         }
     }
 )
+

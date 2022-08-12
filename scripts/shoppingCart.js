@@ -1,35 +1,33 @@
-import { getFacilities, getFacilityMinerals, getMinerals, purchaseMineral, setFacilityMineral, setMineral } from "./database.js"
+import { getCartBuilder, getFacilities, getFacilityMinerals, getMinerals, purchaseMineral } from "./database.js"
 
-const facilityMinerals = getFacilityMinerals()
 const minerals = getMinerals()
 const facilities = getFacilities()
 
+
+// Find a place for this update `1 ton of ${foundMineral.name} from ${foundFacility.name}`
 export const CartSelection = () => {
-    return `<p id="cart--selection"></p>`
-}
+    const facilityMinerals = getFacilityMinerals()
+    const cartBuilder = getCartBuilder()
 
-// Create an event listener of type “change” for the facility mineral radio buttons
-// If a mineral radio button is selected (check for name attribute since it’s a radio button)
-// Find which facilityMineral was selected and store that object in a variable
-// Pass that object into the
-// Find which facility is associated with that facilityMineral object
-// Find which mineral is associated with that facilityMineral object
-// Update the innerHTML of the paragraph element within the Space Cart article to display that 1 ton of that mineral from that facility has been selected
-document.addEventListener(
-    "change",
-    (event) => {
-        if (event.target.name === "facility--mineral") {
-            const foundFacilityMineral = facilityMinerals.find(facilityMineral => facilityMineral.id === parseInt(event.target.value))
-            const foundMineral = minerals.find(mineral => mineral.id === foundFacilityMineral.mineralId)
-            const foundFacility = facilities.find(facility => facility.id === foundFacilityMineral.facilityId)
+    let html = `<p id="cart--selection">`
+    const foundFacilityMineral = facilityMinerals.find(facilityMineral => facilityMineral.id === cartBuilder.facilityMineralId)
 
-            document.getElementById("cart--selection").innerHTML = `1 ton of ${foundMineral.name} from ${foundFacility.name}`
-            setMineral(foundMineral.id)
-            setFacilityMineral(foundFacilityMineral.id)
+    if (foundFacilityMineral) {
+        const foundMineral = minerals.find(mineral => mineral.id === foundFacilityMineral.mineralId)
+        const foundFacility = facilities.find(facility => facility.id === foundFacilityMineral.facilityId)
+
+        // Might not need this double-check
+        if (foundMineral.id === cartBuilder.mineralId) {
+            html += `1 ton of ${foundMineral.name} from ${foundFacility.name}`
         }
     }
-)
 
+    html += `</p>`
+    return html
+}
+
+
+// Purchase Button event listener
 document.addEventListener(
     "click",
     (event) => {
