@@ -30,7 +30,8 @@ const database = {
         { id: 3, facilityId: 2, mineralId: 2, facilityInventory: 56 },
         { id: 4, facilityId: 2, mineralId: 4, facilityInventory: 160 },
         { id: 5, facilityId: 2, mineralId: 5, facilityInventory: 37 },
-        { id: 6, facilityId: 3, mineralId: 1, facilityInventory: 420 },
+        { id: 6, facilityId: 3, mineralId: 1, facilityInventory: 420 }
+        ,
     ],
     colonyMinerals: [
         { id: 1, governorId: 3, colonyId: 2, mineralId: 3, colonyInventory: 7 },
@@ -112,10 +113,10 @@ export const purchaseMineral = () => {
     }
 
     const facilityMinerals = getFacilityMinerals()
-    const foundFacilityMineral = facilityMinerals.find(facilityMineral => facilityMineral.mineralId === cartBuilder.facilityMineralId)
+    const foundFacilityMineral = facilityMinerals.find(facilityMineral => facilityMineral.id === cartBuilder.facilityMineralId)
     const subtractInventory = foundFacilityMineral.facilityInventory - 1
-    foundFacilityMineral[foundFacilityMineral.id - 1].facilityInventory = subtractInventory
-    delete database.cartBuilder.facilityMineralId
+    database.facilityMinerals[foundFacilityMineral.id - 1].facilityInventory = subtractInventory
+    delete newColonyMineral.facilityMineralId
 
 
     // If it doesn't update, try referencing the database object directly instead of found variable
@@ -123,7 +124,7 @@ export const purchaseMineral = () => {
     const foundColonyMineral = colonyMinerals.find(colonyMineral => colonyMineral.mineralId === cartBuilder.mineralId && colonyMineral.colonyId === cartBuilder.colonyId)
     if (foundColonyMineral) {
         const addInventory = foundColonyMineral.colonyInventory + 1
-        foundColonyMineral[foundColonyMineral.id - 1].colonyInventory = addInventory
+        database.colonyMinerals[foundColonyMineral.id - 1].colonyInventory = addInventory
     } else {
         const newPurchase = {
             id: newColonyMineral.id,

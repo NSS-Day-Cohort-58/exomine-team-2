@@ -1,4 +1,7 @@
-import { getCartBuilder, getFacilityMinerals, getMinerals, setMineral, setFacilityMineral } from "./database.js"
+import { getCartBuilder, getFacilityMinerals, getMinerals, setMineral, setFacilityMineral, getFacilities } from "./database.js"
+
+const minerals = getMinerals()
+const facilities = getFacilities()
 
 // Find a place for this update `Facility Minerals for ${foundFacility.name}`
 
@@ -6,7 +9,6 @@ export const FacilityMinerals = () => {
 
     const facilityMinerals = getFacilityMinerals()
     const cartBuilder = getCartBuilder()
-    const minerals = getMinerals()
 
     let facilityHeader = "Facility Minerals"
     if (cartBuilder.facilityId) {
@@ -22,7 +24,10 @@ export const FacilityMinerals = () => {
             const foundMineral = minerals.find(mineral => mineral.id === facilityMineral.mineralId)
             const shouldIBeChecked = facilityMineral.id === cartBuilder.facilityMineralId
 
-            return `<input type="radio" name="facility--mineral" value="${facilityMineral.id}--${facilityMinderal.mineralId}" ${shouldIBeChecked ? "checked" : ""},/> ${facilityMineral.facilityInventory} tons of ${foundMineral.name}`
+            const foundFacility = facilities.find(facility => facility.id === facilityMineral.facilityId)
+            const shouldIBeActive = foundFacility.status
+
+            return `<input type="radio" name="facility--mineral" value="${facilityMineral.id}--${facilityMineral.mineralId}" ${shouldIBeChecked ? "checked" : ""} ${shouldIBeActive ? "" : "disabled"}/> ${facilityMineral.facilityInventory} tons of ${foundMineral.name}`
         } else {
             return ""
         }

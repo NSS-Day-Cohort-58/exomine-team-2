@@ -1,6 +1,7 @@
-import { getColonies, getCartBuilder, getColonyMinerals } from "./database.js"
+import { getColonies, getCartBuilder, getColonyMinerals, getMinerals } from "./database.js"
 
 const colonies = getColonies()
+const minerals = getMinerals()
 
 // -----NEED TO MERGE THESE TWO FUNCTIONS
 // Find a spot for this update `${foundColony.name} Minerals`
@@ -10,14 +11,14 @@ export const ColonyMinerals = () => {
     const cartBuilder = getCartBuilder()
     const colonyMinerals = getColonyMinerals()
 
-    let colonyHeader = "Colony"
+    let colonyHeader = "Colony Minerals"
     if (cartBuilder.colonyId) {
         const foundColony = colonies.find(colony => colony.id === cartBuilder.colonyId)
-        colonyHeader = foundColony.name
+        colonyHeader = `${foundColony.name} Minerals`
     }
 
 
-    let html = `<h2 id="colony--header">${colonyHeader} Minerals</h2>
+    let html = `<h2 id="colony--header">${colonyHeader}</h2>
     <ul id="colony--minerals"></ul>`
 
     const listItems = colonyMinerals.map(
@@ -31,4 +32,6 @@ export const ColonyMinerals = () => {
         }
     )
     html += listItems.join("")
+    html += `</ul>`
+    return html
 }
